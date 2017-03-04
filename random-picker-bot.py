@@ -1,7 +1,7 @@
 import os
 import time
 import nmap
-import random
+from random import randint
 from slackclient import SlackClient
 
 # Config
@@ -10,8 +10,8 @@ API_TOKEN = ""
 
 users = {
   'AC:5F:3E:6E:XX:XX' : 'daan',
-  '00:17:88:13:XX:XX' : 'Jan',
-  '00:17:88:13:XX:XX' : 'Piet',
+  'A0:F3:C1:74:XX:XX' : 'Jan',
+  '54:60:09:D9:XX:XX' : 'Piet',
 }
 
 # constants
@@ -31,13 +31,20 @@ def handle_command(command, channel):
 
     # Gather mac addressses
     for host in hosts_list:
-      if 'mac' in host[1] and host[1]['mac'] in users:
+      if 'mac' in host[1]:
         mac_addresses.append(host[1]['mac'])
 
-    # Pick random mac address and show the name belonging to it
-    random.shuffle(mac_addresses)
+    random = randint(0, len(mac_addresses)-1)
+    i = 0
+    # Return available users and highlight one name
     if len(mac_addresses) > 0:
-      response = "@" + users[mac_addresses[0]]
+        response = ""
+        for mac in mac_addresses:
+            if (i == random):
+                response = response + " *" + users[mac] + "* \n"
+            else:
+                response = response + users[mac] + "\n"
+            i+=1
     else:
       response = "Nobody available"
 
