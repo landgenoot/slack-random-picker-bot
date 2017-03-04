@@ -4,9 +4,10 @@ Slack bot which picks a random person based on presence via network scanner. Run
 ## Requirements
 ```
 sudo apt-get install python python-pip nmap daemon
-sudo pip install python-nmap
-sudo pip install slackclient
+sudo pip install python-nmap slackclient
 ```
+## Create slack API access token
+This is well-explained as a part of this [how to ](https://www.fullstackpython.com/blog/build-first-slack-bot-python.html) 
 
 ## Run
 Try it first with
