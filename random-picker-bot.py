@@ -9,7 +9,7 @@ BOT_ID = ""
 API_TOKEN = ""
 
 users = {
-  'AC:5F:3E:6E:XX:XX' : 'daan',
+  'AC:5F:3E:6E:XX:XX' : 'Daan',
   'A0:F3:C1:74:XX:XX' : 'Jan',
   '54:60:09:D9:XX:XX' : 'Piet',
 }
@@ -31,7 +31,7 @@ def handle_command(command, channel):
 
     # Gather mac addressses
     for host in hosts_list:
-      if 'mac' in host[1]:
+      if 'mac' in host[1] and host[1]['mac'] in users:
         mac_addresses.append(host[1]['mac'])
 
     random = randint(0, len(mac_addresses)-1)
